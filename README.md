@@ -1,65 +1,70 @@
-# Affan Portfolio — React JS
+# Affan Portfolio — React + GSAP + Swiper
 
-A minimal, animated, purple-themed personal portfolio website built in React + Vite.
+A fully rebuilt **light-theme**, story-driven personal portfolio with GSAP animations, Swiper testimonials carousel, and structured JSON data files.
 
-## ✨ Features
+## Stack
+- **React 18** + Create React App
+- **GSAP 3** (ScrollTrigger, MotionPath) — all animations
+- **Swiper 11** — testimonials carousel
+- **Google Fonts** — Syne (display) + DM Sans (body)
 
-- **MA Loading Animation** — Techy letter assembly with glitch, scanline, and glow effects
-- **First Visit Modal** — Captures visitor name & business, saves as JSON to localStorage
-- **Personalized Hero** — Greets returning visitors by name
-- **All Sections** — Home, About, Experience, Portfolio, Services, Achievements, CTA, Contact
-- **Portfolio Filter** — Tabs to filter by category (Frontend, UI/UX, Graphic Design, Branding)
-- **Project Modal** — Click any project card for details
-- **Responsive** — Mobile-first design throughout
-- **Purple Minimal** — Dark background, purple accents, Syne + DM Sans typography
-
-## 🚀 Setup
-
+## Quick Start
 ```bash
 npm install
-npm run dev
+npm start
+# Opens at http://localhost:3000
 ```
 
-Open http://localhost:5173
-
-## 🛠 Stack
-
-- React 18 + Vite
-- CSS-in-JS (inline styles + style tags)
-- Google Fonts: Syne (display) + DM Sans (body)
-- localStorage for visitor data persistence
-
-## 📁 Structure
-
+## Structure
 ```
 src/
-  App.jsx                  # Root — manages loading, modal, visitor state
-  index.css                # Global CSS variables + utility classes
+  App.jsx
+  index.css                    ← Light theme tokens + global styles
+  data/                        ← ALL content as JSON
+    webProjects.json
+    uxProjects.json
+    graphicProjects.json
+    testimonials.json
+    achievements.json
+    experience.json
   components/
-    LoadingScreen.jsx      # MA animation (glitch, scanline, progress bar)
-    FirstVisitModal.jsx    # 3-step name/business capture → JSON
-    Navbar.jsx             # Fixed nav with scroll detection + mobile menu
-    Hero.jsx               # Full-height hero with rotating roles + stats
-    About.jsx              # Skills grid + "what I bring" card
-    Experience.jsx         # Timeline layout
-    Portfolio.jsx          # Filterable grid + project detail modal
-    Services.jsx           # 4-card services + 5-step process strip
-    Achievements.jsx       # Achievement cards + milestone timeline
-    CTA.jsx                # Animated CTA banner
-    Contact.jsx            # Contact info + form with success state
-    Footer.jsx             # Simple branded footer
+    LoadingScreen.jsx           ← MA letter drop + GSAP glitch + progress
+    FirstVisitModal.jsx         ← 3-step name/company capture → localStorage
+    Navbar.jsx                  ← Scroll-aware + mobile drawer
+    Hero.jsx                    ← GSAP stagger + rotating roles
+    About.jsx                   ← Skill icon grid + "Problems I solve"
+    Experience.jsx              ← SVG pathway animation + alternating cards
+    Portfolio.jsx               ← Web (live+source) | UX case study modal | Graphic stats
+    Services.jsx                ← Animated process steps + connecting line
+    Achievements.jsx            ← Counter animation + Certificates + Events tabs
+    Testimonials.jsx            ← Swiper autoplay carousel
+    CTA.jsx                     ← Floating word tags + shimmer headline + spinning ring
+    Contact.jsx                 ← 2-col grid, labeled inputs, success state
+    Footer.jsx
+
+public/
+  index.html
+  images/
+    web/                        ← Add your project screenshots here
+    ux/                         ← Add your case study covers here
+    graphic/                    ← Add your design work here
+    testimonials/               ← Add client avatars here
 ```
 
-## 🎨 Customization
+## Customising Content
+All content lives in `src/data/*.json` — edit those files, no component changes needed.
 
-1. Update your real email/LinkedIn/GitHub in `Contact.jsx` and `Footer.jsx`
-2. Replace project placeholders in `Portfolio.jsx` with your real work
-3. Update the `experiences` array in `Experience.jsx`
-4. Add your real profile photo by adding an `<img>` in `About.jsx`
+### Adding real images
+Drop images into `public/images/[category]/` matching the `"image"` paths in the JSON files.  
+If an image is missing, cards show a clean purple gradient placeholder automatically.
 
-## 📦 Build for Production
+### Update your real links
+- `Contact.jsx` — email, LinkedIn, GitHub, Behance hrefs  
+- `Footer.jsx` — social links  
+- `data/webProjects.json` — liveUrl, sourceUrl  
+- `data/uxProjects.json` — figmaUrl  
 
+## Build for production
 ```bash
 npm run build
-npm run preview
 ```

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "t1",
+    "name": "Riya Sharma",
+    "role": "Founder",
+    "company": "Zara Boutique",
+    "avatar": "/images/testimonials/riya.jpg",
+    "initials": "RS",
+    "text": "Affan redesigned our website from scratch and the new landing page doubled our inquiry rate within the first month. He understood our brand better than we did.",
+    "rating": 5,
+    "project": "E-Commerce Website"
+  },
+  {
+    "id": "t2",
+    "name": "Karan Mehta",
+    "role": "CEO",
+    "company": "TechStart",
+    "avatar": "/images/testimonials/karan.jpg",
+    "initials": "KM",
+    "text": "What stood out was how Affan combined design sensibility with business thinking. He didn't just build what we asked — he improved it. Exceeded our conversion targets.",
+    "rating": 5,
+    "project": "SaaS Landing Page"
+  },
+  {
+    "id": "t3",
+    "name": "Priya Nair",
+    "role": "Marketing Head",
+    "company": "Neon Gym",
+    "avatar": "/images/testimonials/priya.jpg",
+    "initials": "PN",
+    "text": "Our social media engagement went up 3x after Affan created our content kit. Super professional, fast turnaround, and genuinely passionate about the work.",
+    "rating": 5,
+    "project": "Social Media Kit"
+  },
+  {
+    "id": "t4",
+    "name": "Arjun Desai",
+    "role": "Product Manager",
+    "company": "EduPlatform",
+    "avatar": "/images/testimonials/arjun.jpg",
+    "initials": "AD",
+    "text": "The dashboard redesign solved a real problem. Affan ran proper research, presented findings clearly, and delivered a design that actually worked — support tickets dropped 30%.",
+    "rating": 5,
+    "project": "Dashboard Redesign"
+  }
+]

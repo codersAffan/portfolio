@@ -1,200 +1,194 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+import expData from "../data/experience.json";
 
-const experiences = [
-  {
-    type: 'Education',
-    title: 'BSc Information Technology',
-    org: 'University of Mumbai',
-    period: '2023 — Present',
-    current: true,
-    desc: 'SY student studying data structures, web development, databases, algorithms, and software engineering foundations.',
-    tags: ['Web Dev', 'DSA', 'Databases', 'Software Engg'],
-    color: '#a855f7',
-  },
-  {
-    type: 'Freelance',
-    title: 'UI/UX & Graphic Designer',
-    org: 'Freelance — Multiple Clients',
-    period: '2023 — Present',
-    current: true,
-    desc: 'Delivered brand identities, landing pages, and UI flows for startups and small businesses. End-to-end design from research to handoff.',
-    tags: ['Figma', 'Branding', 'UX Research', 'Prototyping'],
-    color: '#7c3aed',
-  },
-  {
-    type: 'Project',
-    title: 'Frontend Developer',
-    org: 'Personal & Client Projects',
-    period: '2022 — Present',
-    current: true,
-    desc: 'Built production-grade React apps, interactive landing pages, and component libraries with focus on performance and micro-interactions.',
-    tags: ['React', 'JavaScript', 'CSS', 'GSAP'],
-    color: '#9333ea',
-  },
-  {
-    type: 'Learning',
-    title: 'Entrepreneurship & Business',
-    org: 'Self-Directed Study',
-    period: '2024 — Present',
-    current: true,
-    desc: 'Deep-diving into business strategy, financial literacy, product management, and startup ecosystem dynamics.',
-    tags: ['Strategy', 'Finance', 'Product Thinking'],
-    color: '#6d28d9',
-  },
-];
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
-function TimelineItem({ exp, index }) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
+function ExpCard({ exp, side, index }) {
+  const cardRef = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { threshold: 0.2 }
+    gsap.fromTo(cardRef.current,
+      { x: side === "left" ? -50 : 50, opacity: 0 },
+      {
+        x: 0, opacity: 1, duration: 0.7, ease: "power3.out",
+        scrollTrigger: { trigger: cardRef.current, start: "top 82%", once: true },
+        delay: index * 0.08,
+      }
     );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const isEven = index % 2 === 0;
+  }, [side, index]);
 
   return (
-    <div ref={ref} style={{
-      display: 'grid',
-      gridTemplateColumns: '1fr 40px 1fr',
-      gap: '0 24px',
-      marginBottom: 32,
-      opacity: visible ? 1 : 0,
-      transform: visible ? 'translateY(0)' : 'translateY(32px)',
-      transition: `opacity 0.6s ease ${index * 0.12}s, transform 0.6s ease ${index * 0.12}s`,
-    }}>
-      {/* Left side */}
-      <div style={{ display: 'flex', justifyContent: 'flex-end', paddingTop: 12 }}>
-        {isEven ? (
-          <div style={{
-            background: 'rgba(13,10,26,0.8)', border: '1px solid rgba(124,58,237,0.15)',
-            borderRadius: 14, padding: '22px 24px', maxWidth: 340, width: '100%',
-            transition: 'border-color 0.25s',
-          }}
-            onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(124,58,237,0.35)'}
-            onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(124,58,237,0.15)'}
-          >
-            <CardContent exp={exp} />
+    <div ref={cardRef} style={{ opacity: 0 }}>
+      <div style={{
+        background: "white", borderRadius: 16,
+        border: "1px solid #e5e0fa",
+        padding: "22px 24px",
+        boxShadow: "0 2px 12px rgba(124,58,237,0.06)",
+        transition: "all 0.28s",
+        cursor: "default",
+        position: "relative",
+        overflow: "hidden",
+      }}
+        onMouseEnter={e => { e.currentTarget.style.borderColor = "#c4b5fd"; e.currentTarget.style.boxShadow = "0 8px 28px rgba(124,58,237,0.14)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+        onMouseLeave={e => { e.currentTarget.style.borderColor = "#e5e0fa"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(124,58,237,0.06)"; e.currentTarget.style.transform = "translateY(0)"; }}
+      >
+        {/* Left accent bar */}
+        <div style={{ position: "absolute", top: 0, left: 0, bottom: 0, width: 3, background: exp.color, borderRadius: "16px 0 0 16px" }} />
+        <div style={{ paddingLeft: 8 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6, flexWrap: "wrap" }}>
+            <span style={{ fontSize: 10, fontFamily: "'DM Sans', sans-serif", letterSpacing: "1.5px", textTransform: "uppercase", color: exp.color, background: `${exp.color}14`, padding: "2px 9px", borderRadius: 4, fontWeight: 600 }}>{exp.type}</span>
+            {exp.current && (
+              <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11, color: "#22c55e", fontFamily: "'DM Sans', sans-serif" }}>
+                <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e", display: "inline-block", boxShadow: "0 0 6px #22c55e" }} />Active
+              </span>
+            )}
           </div>
-        ) : (
-          <div style={{ display: 'flex', alignItems: 'center', paddingRight: 8 }}>
-            <span style={{ fontFamily: 'DM Sans,sans-serif', fontSize: 12, color: 'rgba(196,181,253,0.35)', whiteSpace: 'nowrap' }}>{exp.period}</span>
+          <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: 16, fontWeight: 700, color: "#18103a", marginBottom: 3 }}>{exp.title}</h3>
+          <p style={{ fontSize: 12, color: exp.color, marginBottom: 8, fontFamily: "'DM Sans', sans-serif", fontWeight: 500 }}>{exp.org}</p>
+          <p style={{ fontSize: 13, color: "#7c6fa0", lineHeight: 1.65, marginBottom: 12 }}>{exp.description}</p>
+          <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
+            {exp.tags.map(t => (
+              <span key={t} style={{ background: "#f5f3ff", border: "1px solid #e5e0fa", color: "#7c3aed", padding: "3px 9px", borderRadius: 5, fontSize: 11, fontFamily: "'DM Sans', sans-serif" }}>{t}</span>
+            ))}
           </div>
-        )}
-      </div>
-
-      {/* Center dot + line */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{
-          width: 14, height: 14, borderRadius: '50%', flexShrink: 0,
-          background: exp.color, border: '2px solid #05030f',
-          boxShadow: `0 0 12px ${exp.color}80`,
-          marginTop: 16, zIndex: 1,
-        }} />
-        <div style={{ flex: 1, width: 1, background: 'linear-gradient(to bottom, rgba(124,58,237,0.3), rgba(124,58,237,0.05))', marginTop: 4 }} />
-      </div>
-
-      {/* Right side */}
-      <div style={{ paddingTop: 12 }}>
-        {!isEven ? (
-          <div style={{
-            background: 'rgba(13,10,26,0.8)', border: '1px solid rgba(124,58,237,0.15)',
-            borderRadius: 14, padding: '22px 24px', maxWidth: 340,
-            transition: 'border-color 0.25s',
-          }}
-            onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(124,58,237,0.35)'}
-            onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(124,58,237,0.15)'}
-          >
-            <CardContent exp={exp} />
-          </div>
-        ) : (
-          <div style={{ display: 'flex', alignItems: 'center', paddingLeft: 8, paddingTop: 4 }}>
-            <span style={{ fontFamily: 'DM Sans,sans-serif', fontSize: 12, color: 'rgba(196,181,253,0.35)', whiteSpace: 'nowrap' }}>{exp.period}</span>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );
 }
 
-function CardContent({ exp }) {
-  return (
-    <>
-      <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6, flexWrap: 'wrap' }}>
-        <span style={{
-          fontSize: 10, fontFamily: 'DM Sans,sans-serif', letterSpacing: '1.5px',
-          textTransform: 'uppercase', color: exp.color,
-          background: `${exp.color}18`, padding: '2px 8px', borderRadius: 4,
-        }}>{exp.type}</span>
-        {exp.current && (
-          <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 10, color: '#4ade80', fontFamily: 'DM Sans,sans-serif' }}>
-            <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#4ade80', display: 'inline-block', boxShadow: '0 0 6px #4ade80' }} />
-            Active
-          </span>
-        )}
-      </div>
-      <h3 style={{ fontFamily: 'Syne,sans-serif', fontSize: 16, fontWeight: 700, marginBottom: 3 }}>{exp.title}</h3>
-      <p style={{ fontFamily: 'DM Sans,sans-serif', fontSize: 12, color: exp.color, marginBottom: 10, opacity: 0.85 }}>{exp.org}</p>
-      <p style={{ fontFamily: 'DM Sans,sans-serif', fontSize: 13, color: 'rgba(196,181,253,0.58)', lineHeight: 1.65, marginBottom: 14 }}>{exp.desc}</p>
-      <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
-        {exp.tags.map(t => (
-          <span key={t} style={{ background: 'rgba(124,58,237,0.08)', border: '1px solid rgba(124,58,237,0.18)', color: 'rgba(196,181,253,0.65)', padding: '3px 9px', borderRadius: 5, fontSize: 10, fontFamily: 'DM Sans,sans-serif' }}>{t}</span>
-        ))}
-      </div>
-    </>
-  );
-}
-
 export default function Experience() {
-  return (
-    <section id="experience" style={{ padding: '100px 0', position: 'relative' }}>
-      <style>{`
-        @media(max-width:640px) {
-          .timeline-wrap { display: flex !important; flex-direction: column !important; }
-          .timeline-mobile-card {
-            background:rgba(13,10,26,0.8);border:1px solid rgba(124,58,237,0.15);
-            border-radius:14px;padding:22px 20px;margin-bottom:16px;
-          }
-        }
-      `}</style>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
-        <p style={{ fontSize: 11, letterSpacing: '3px', textTransform: 'uppercase', color: '#a855f7', marginBottom: 12, fontFamily: 'DM Sans,sans-serif' }}>Timeline</p>
-        <h2 style={{ fontFamily: 'Syne,sans-serif', fontSize: 'clamp(28px,4vw,44px)', fontWeight: 700, lineHeight: 1.1, marginBottom: 16 }}>
-          Experience &<br /><span style={{ color: '#a855f7' }}>Education</span>
-        </h2>
-        <p style={{ color: 'rgba(196,181,253,0.45)', fontSize: 15, marginBottom: 64, maxWidth: 460, lineHeight: 1.7, fontFamily: 'DM Sans,sans-serif' }}>
-          My journey from classroom to client work — built across design, code, and continuous learning.
-        </p>
+  const sectionRef = useRef(null);
+  const pathRef = useRef(null);
+  const dotRefs = useRef([]);
+  const headerRef = useRef(null);
 
-        {/* Desktop alternating timeline */}
-        <div style={{ maxWidth: 860, margin: '0 auto' }} className="desktop-timeline">
-          {experiences.map((exp, i) => (
-            <TimelineItem key={i} exp={exp} index={i} />
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(headerRef.current,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: "power2.out", scrollTrigger: { trigger: headerRef.current, start: "top 80%", once: true } }
+      );
+
+      // Animate the SVG path drawing
+      if (pathRef.current) {
+        const length = pathRef.current.getTotalLength ? pathRef.current.getTotalLength() : 600;
+        gsap.set(pathRef.current, { strokeDasharray: length, strokeDashoffset: length });
+        gsap.to(pathRef.current, {
+          strokeDashoffset: 0, duration: 2.5, ease: "power2.inOut",
+          scrollTrigger: { trigger: sectionRef.current, start: "top 60%", end: "bottom 80%", scrub: 1 }
+        });
+      }
+
+      // Animate dots along the path
+      dotRefs.current.forEach((dot, i) => {
+        if (!dot) return;
+        gsap.fromTo(dot,
+          { scale: 0, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2)",
+            scrollTrigger: { trigger: dot, start: "top 80%", once: true }, delay: i * 0.1 }
+        );
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section id="experience" ref={sectionRef} className="section" style={{ background: "#f5f3ff" }}>
+      <style>{`
+        .exp-grid { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; align-items: start; }
+        @media(max-width:640px) { .exp-grid { grid-template-columns: 32px 1fr; } .exp-right-col { display: none; } .exp-left-col { display: none; } }
+        .exp-row { display: contents; }
+        .period-label { font-family: 'DM Sans', sans-serif; font-size: 12px; color: #7c6fa0; white-space: nowrap; padding-top: 10px; }
+        .path-dot { flex-shrink: 0; }
+      `}</style>
+
+      <div className="container">
+        <div ref={headerRef} style={{ opacity: 0, marginBottom: 64, maxWidth: 600 }}>
+          <span className="label">My Journey</span>
+          <h2 className="section-title">The path that<br />got me <span>here</span></h2>
+          <p className="section-sub">From writing my first line of HTML to designing real products for real clients — here's how the story unfolded.</p>
+        </div>
+
+        {/* Timeline */}
+        <div style={{ maxWidth: 860, margin: "0 auto", position: "relative" }}>
+
+          {/* Animated SVG pathway */}
+          <div style={{ position: "absolute", left: "50%", top: 0, bottom: 0, transform: "translateX(-50%)", width: 60, pointerEvents: "none", display: "flex", justifyContent: "center" }} className="desktop-path">
+            <svg width="2" height="100%" style={{ overflow: "visible" }}>
+              <line x1="1" y1="0" x2="1" y2="100%" stroke="#e5e0fa" strokeWidth="2" strokeDasharray="6 4" />
+              <line ref={pathRef} x1="1" y1="0" x2="1" y2="100%" stroke="#7c3aed" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </div>
+
+          {expData.map((exp, i) => {
+            const isLeft = i % 2 === 0;
+            return (
+              <div key={exp.id} style={{ display: "grid", gridTemplateColumns: "1fr 60px 1fr", gap: "0 0", marginBottom: 40, alignItems: "start" }}>
+                {/* Left card or period */}
+                <div style={{ paddingRight: 28, paddingTop: 8 }}>
+                  {isLeft ? (
+                    <ExpCard exp={exp} side="left" index={i} />
+                  ) : (
+                    <div style={{ textAlign: "right", paddingTop: 12 }}>
+                      <span className="period-label">{exp.period}</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Center dot */}
+                <div style={{ display: "flex", justifyContent: "center", paddingTop: 16, zIndex: 2 }}>
+                  <div ref={el => dotRefs.current[i] = el} style={{
+                    width: 16, height: 16, borderRadius: "50%",
+                    background: exp.color, border: "3px solid white",
+                    boxShadow: `0 0 0 3px ${exp.color}30`,
+                    opacity: 0,
+                  }} />
+                </div>
+
+                {/* Right card or period */}
+                <div style={{ paddingLeft: 28, paddingTop: 8 }}>
+                  {!isLeft ? (
+                    <ExpCard exp={exp} side="right" index={i} />
+                  ) : (
+                    <div style={{ paddingTop: 12 }}>
+                      <span className="period-label">{exp.period}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Mobile timeline */}
+        <style>{`
+          @media(min-width:641px) { .mobile-exp { display: none !important; } }
+          @media(max-width:640px) { .desktop-exp { display: none !important; } }
+        `}</style>
+        <div className="mobile-exp" style={{ display: "none" }}>
+          {expData.map((exp, i) => (
+            <div key={exp.id} style={{ display: "flex", gap: 14, marginBottom: 20 }}>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 12 }}>
+                <div style={{ width: 14, height: 14, borderRadius: "50%", background: exp.color, border: "2px solid white", boxShadow: `0 0 0 2px ${exp.color}40`, flexShrink: 0 }} />
+                {i < expData.length - 1 && <div style={{ flex: 1, width: 2, background: "#e5e0fa", marginTop: 6 }} />}
+              </div>
+              <div style={{ flex: 1, paddingBottom: 8 }}>
+                <p style={{ fontSize: 11, color: "#7c6fa0", marginBottom: 6 }}>{exp.period}</p>
+                <div style={{ background: "white", border: "1px solid #e5e0fa", borderRadius: 12, padding: "16px 18px", borderLeft: `3px solid ${exp.color}` }}>
+                  <span style={{ fontSize: 10, color: exp.color, textTransform: "uppercase", letterSpacing: "1.5px", fontWeight: 600 }}>{exp.type}</span>
+                  <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: 15, fontWeight: 700, marginTop: 4, marginBottom: 4 }}>{exp.title}</h3>
+                  <p style={{ fontSize: 12, color: "#a855f7", marginBottom: 6 }}>{exp.org}</p>
+                  <p style={{ fontSize: 13, color: "#7c6fa0", lineHeight: 1.6 }}>{exp.description}</p>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
-
-      <style>{`
-        @media(max-width:640px) {
-          .desktop-timeline { display:none; }
-        }
-      `}</style>
-
-      {/* Mobile fallback */}
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'none' }} className="mobile-timeline">
-        {experiences.map((exp, i) => (
-          <div key={i} className="timeline-mobile-card" style={{background:'rgba(13,10,26,0.8)',border:'1px solid rgba(124,58,237,0.15)',borderRadius:14,padding:'22px 20px',marginBottom:16,borderLeft:`3px solid ${exp.color}`}}>
-            <p style={{fontFamily:'DM Sans,sans-serif',fontSize:11,color:'rgba(196,181,253,0.35)',marginBottom:6}}>{exp.period}</p>
-            <CardContent exp={exp}/>
-          </div>
-        ))}
-      </div>
-      <style>{`@media(max-width:640px){.mobile-timeline{display:block!important}}`}</style>
     </section>
   );
 }

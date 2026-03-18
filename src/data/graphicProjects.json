@@ -1,0 +1,54 @@
+[
+  {
+    "id": "g1",
+    "category": "Client",
+    "title": "Brew & Co — Café Brand Identity",
+    "description": "Complete brand identity for a specialty coffee shop. Logo, color system, packaging mockups, menu, and a full 30-piece Instagram kit.",
+    "image": "/images/graphic/brew-co.jpg",
+    "tags": ["Branding", "Logo Design", "Packaging", "Print"],
+    "year": "2024",
+    "views": 2840,
+    "likes": 312,
+    "shares": 87,
+    "saves": 204
+  },
+  {
+    "id": "g2",
+    "category": "Client",
+    "title": "Neon Gym — Social Media Kit",
+    "description": "Full content system for a fitness brand. 30+ templates across feed posts, stories, highlight covers, and reel cover art.",
+    "image": "/images/graphic/neon-gym.jpg",
+    "tags": ["Social Media", "Templates", "Brand System"],
+    "year": "2024",
+    "views": 3210,
+    "likes": 445,
+    "shares": 122,
+    "saves": 318
+  },
+  {
+    "id": "g3",
+    "category": "Personal",
+    "title": "Type Poster Series — Motion & Stillness",
+    "description": "3-piece typographic poster series exploring duality through experimental typography, negative space, and grain texture.",
+    "image": "/images/graphic/type-posters.jpg",
+    "tags": ["Typography", "Poster Design", "Art Direction"],
+    "year": "2024",
+    "views": 1540,
+    "likes": 198,
+    "shares": 44,
+    "saves": 167
+  },
+  {
+    "id": "g4",
+    "category": "Personal",
+    "title": "Minimal Icon System — 40 Icons",
+    "description": "Custom 40-icon set in a consistent minimal stroke style. Built for a dark-theme web app. All icons available as SVG and Figma components.",
+    "image": "/images/graphic/icon-system.jpg",
+    "tags": ["Icon Design", "SVG", "Design System"],
+    "year": "2023",
+    "views": 980,
+    "likes": 134,
+    "shares": 29,
+    "saves": 89
+  }
+]

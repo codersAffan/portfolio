@@ -1,0 +1,50 @@
+[
+  {
+    "id": "w1",
+    "category": "Client",
+    "title": "Zara Boutique — E-Commerce",
+    "description": "Full storefront redesign with product listing, cart flow, and checkout UI. Mobile-first approach increased conversions by 38%.",
+    "image": "/images/web/zara-boutique.jpg",
+    "tags": ["React", "CSS Grid", "Responsive"],
+    "liveUrl": "https://example.com",
+    "sourceUrl": "https://github.com",
+    "year": "2024",
+    "role": "Frontend Developer"
+  },
+  {
+    "id": "w2",
+    "category": "Client",
+    "title": "TechStart SaaS Landing Page",
+    "description": "High-conversion landing page for a B2B SaaS product. Animated sections, clear value props, and CTA-optimised flow.",
+    "image": "/images/web/techstart.jpg",
+    "tags": ["React", "GSAP", "Vite"],
+    "liveUrl": "https://example.com",
+    "sourceUrl": "https://github.com",
+    "year": "2024",
+    "role": "Frontend Developer + Designer"
+  },
+  {
+    "id": "w3",
+    "category": "Personal",
+    "title": "Weather Dashboard App",
+    "description": "Real-time weather app with location search, 7-day forecast, animated weather icons, and dark/light mode toggle.",
+    "image": "/images/web/weather-app.jpg",
+    "tags": ["React", "OpenWeather API", "CSS"],
+    "liveUrl": "https://example.com",
+    "sourceUrl": "https://github.com",
+    "year": "2023",
+    "role": "Solo Developer"
+  },
+  {
+    "id": "w4",
+    "category": "Personal",
+    "title": "Portfolio v1",
+    "description": "My first personal portfolio site — clean layout, smooth scroll animations, and fully responsive design built without any frameworks.",
+    "image": "/images/web/portfolio-v1.jpg",
+    "tags": ["HTML", "CSS", "Vanilla JS"],
+    "liveUrl": "https://example.com",
+    "sourceUrl": "https://github.com",
+    "year": "2023",
+    "role": "Solo Developer"
+  }
+]

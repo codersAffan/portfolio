@@ -1,0 +1,50 @@
+[
+  {
+    "id": "exp1",
+    "type": "Education",
+    "title": "BSc Information Technology",
+    "org": "University of Mumbai",
+    "period": "2023 — Present",
+    "current": true,
+    "description": "Second year student studying data structures, web development, databases, algorithms, and software engineering principles.",
+    "tags": ["Web Dev", "DSA", "Databases", "OS"],
+    "color": "#7c3aed",
+    "side": "left"
+  },
+  {
+    "id": "exp2",
+    "type": "Freelance",
+    "title": "UI/UX & Graphic Designer",
+    "org": "Freelance — Multiple Clients",
+    "period": "2023 — Present",
+    "current": true,
+    "description": "Delivered brand identities, landing pages, and full UI flows for startups and small businesses across India.",
+    "tags": ["Figma", "Branding", "UX Research", "Prototyping"],
+    "color": "#a855f7",
+    "side": "right"
+  },
+  {
+    "id": "exp3",
+    "type": "Project",
+    "title": "Frontend Developer",
+    "org": "Personal & Client Projects",
+    "period": "2022 — Present",
+    "current": true,
+    "description": "Built production-grade React applications, interactive landing pages, and component libraries with focus on performance.",
+    "tags": ["React", "JavaScript", "CSS", "GSAP"],
+    "color": "#9333ea",
+    "side": "left"
+  },
+  {
+    "id": "exp4",
+    "type": "Learning",
+    "title": "Entrepreneurship & Business",
+    "org": "Self-Directed Study",
+    "period": "2024 — Present",
+    "current": true,
+    "description": "Studying business strategy, financial literacy, product management, and startup ecosystem dynamics alongside my degree.",
+    "tags": ["Strategy", "Finance", "Product Thinking"],
+    "color": "#6d28d9",
+    "side": "right"
+  }
+]

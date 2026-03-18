@@ -1,0 +1,71 @@
+{
+  "stats": [
+    { "num": 10, "suffix": "+", "label": "Projects Delivered" },
+    { "num": 3, "suffix": "", "label": "Skill Domains" },
+    { "num": 2, "suffix": "+", "label": "Years Building" },
+    { "num": 100, "suffix": "%", "label": "Client Satisfaction" }
+  ],
+  "certificates": [
+    {
+      "id": "c1",
+      "title": "Responsive Web Design",
+      "issuer": "freeCodeCamp",
+      "date": "2023",
+      "credentialUrl": "#",
+      "icon": "/icons/html5.svg"
+    },
+    {
+      "id": "c2",
+      "title": "JavaScript Algorithms & Data Structures",
+      "issuer": "freeCodeCamp",
+      "date": "2023",
+      "credentialUrl": "#",
+      "icon": "/icons/javascript.svg"
+    },
+    {
+      "id": "c3",
+      "title": "UI/UX Design Fundamentals",
+      "issuer": "Google / Coursera",
+      "date": "2024",
+      "credentialUrl": "#",
+      "icon": "/icons/figma.svg"
+    },
+    {
+      "id": "c4",
+      "title": "Foundations of User Experience Design",
+      "issuer": "Google",
+      "date": "2024",
+      "credentialUrl": "#",
+      "icon": "/icons/link.svg"
+    }
+  ],
+  "events": [
+    {
+      "id": "e1",
+      "title": "TechFest 2024 — Web Dev Workshop",
+      "role": "Organizer & Facilitator",
+      "description": "Organized and conducted a hands-on React & CSS workshop for 60+ first-year students at our college tech fest.",
+      "date": "March 2024",
+      "attendees": 60,
+      "icon": "/icons/link.svg"
+    },
+    {
+      "id": "e2",
+      "title": "Design Thinking Hackathon",
+      "role": "Event Coordinator",
+      "description": "Co-organized a 12-hour design hackathon with 8 teams, managed logistics, judging criteria, and post-event showcase.",
+      "date": "Jan 2024",
+      "attendees": 48,
+      "icon": "/icons/location.svg"
+    },
+    {
+      "id": "e3",
+      "title": "Open Source Contribution Drive",
+      "role": "Lead Organizer",
+      "description": "Led a college-level open source contribution drive during Hacktoberfest, onboarding 25 students to GitHub and PR workflow.",
+      "date": "Oct 2023",
+      "attendees": 25,
+      "icon": "/icons/git.svg"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+[
+  {
+    "id": "u1",
+    "category": "Client",
+    "title": "FinTrack — Finance App Redesign",
+    "subtitle": "Making personal finance feel less like homework",
+    "image": "/images/ux/fintrack-cover.jpg",
+    "tags": ["UX Research", "Figma", "Prototyping", "Usability Testing"],
+    "year": "2024",
+    "role": "Lead UX Designer",
+    "duration": "6 weeks",
+    "overview": "FinTrack is a personal finance app used by 50,000+ users. Despite good functionality, users were churning at the dashboard stage. I was brought in to redesign the core tracking experience.",
+    "problem": "Users couldn't track spending habits effectively due to confusing navigation, overwhelming data presentation, and a lack of clear financial goals feature.",
+    "research": [
+      "Conducted 8 user interviews across different income brackets",
+      "Ran a competitive analysis of 5 rival apps (Mint, YNAB, Wallet, Money Manager, Spendee)",
+      "Created empathy maps revealing users felt 'judged' by the app",
+      "Identified 3 primary user archetypes: Casual Tracker, Budget Planner, and Debt Manager"
+    ],
+    "solution": "Redesigned the information architecture, introduced a goals-first dashboard, created a spending calendar view, and replaced complex charts with plain-language summaries.",
+    "process": ["Research", "Define", "Ideate", "Prototype", "Test", "Iterate"],
+    "outcome": "42% improvement in task completion rate during usability testing. Client reported 28% reduction in churn post-launch.",
+    "figmaUrl": "https://figma.com"
+  },
+  {
+    "id": "u2",
+    "category": "Personal",
+    "title": "Recipe Discovery App",
+    "subtitle": "Cooking should feel like creativity, not a chore",
+    "image": "/images/ux/recipe-app-cover.jpg",
+    "tags": ["UX Research", "Figma", "User Testing", "Mobile Design"],
+    "year": "2024",
+    "role": "UX Designer",
+    "duration": "4 weeks",
+    "overview": "A self-initiated case study exploring how people discover, save, and follow recipes. Existing apps are cluttered with ads and require too many steps to get to the actual recipe.",
+    "problem": "Popular recipe apps overwhelm users with ads, autoplay videos, and life stories before showing the recipe. Mobile experience is painful, especially with messy hands.",
+    "research": [
+      "Surveyed 24 home cooks via Google Forms",
+      "Analysed pain points from App Store reviews of top 3 recipe apps",
+      "Created 2 user personas: Weeknight Cook and Weekend Baker",
+      "Mapped the current journey to identify 7 friction points"
+    ],
+    "solution": "Minimal card-based interface with instant recipe access, smart ingredient swaps, a cook mode that keeps the screen awake, and voice navigation.",
+    "process": ["Research", "Personas", "Journey Map", "Wireframes", "Hi-Fi", "Test"],
+    "outcome": "Prototype tested with 8 participants. All rated clarity 5/5. Average time-to-recipe reduced from 47 seconds to 11 seconds.",
+    "figmaUrl": "https://figma.com"
+  },
+  {
+    "id": "u3",
+    "category": "Client",
+    "title": "EduPlatform Student Dashboard",
+    "subtitle": "Students shouldn't feel lost in their own learning",
+    "image": "/images/ux/edu-platform-cover.jpg",
+    "tags": ["Dashboard Design", "Design System", "Figma", "UX Audit"],
+    "year": "2023",
+    "role": "UX Designer",
+    "duration": "5 weeks",
+    "overview": "An ed-tech startup's student dashboard had a 62% drop-off rate after onboarding. Students reported feeling confused about where to start and couldn't track their progress.",
+    "problem": "The dashboard showed all courses, all progress, and all notifications in a flat list — no hierarchy, no priority, no sense of direction.",
+    "research": [
+      "Analysed session recordings using Hotjar",
+      "Interviewed 6 students from different programmes",
+      "Mapped the onboarding to course completion journey",
+      "Identified 'what do I do next' as the #1 user question"
+    ],
+    "solution": "Redesigned with a priority-based Today view, a visual progress tracker per course, grouped notifications, and a simplified onboarding checklist.",
+    "process": ["Audit", "Research", "Architecture", "Design", "System", "Handoff"],
+    "outcome": "Client reported 30% reduction in support tickets. Onboarding completion rate increased from 41% to 74%.",
+    "figmaUrl": "https://figma.com"
+  }
+]

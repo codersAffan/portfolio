@@ -1,92 +1,152 @@
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 export default function CTA() {
+  const sectionRef  = useRef(null);
+  const boxRef      = useRef(null);
+  const headRef     = useRef(null);
+  const subRef      = useRef(null);
+  const btnsRef     = useRef(null);
+  const badgesRef   = useRef(null);
+  const orbRef      = useRef(null);
+  const ringRef     = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Box slides up
+      gsap.fromTo(boxRef.current,
+        { y: 60, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, ease: "power3.out",
+          scrollTrigger: { trigger: boxRef.current, start: "top 80%", once: true } }
+      );
+      // Stagger inner elements
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: boxRef.current, start: "top 78%", once: true }
+      });
+      tl.fromTo(headRef.current,  { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 0.2)
+        .fromTo(subRef.current,   { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.4)
+        .fromTo(btnsRef.current,  { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.55)
+        .fromTo(badgesRef.current,{ y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 0.7);
+
+      // Floating word tags
+      // Removed floating word animations
+
+      // Orb pulse
+      gsap.to(orbRef.current, { scale: 1.15, opacity: 0.8, duration: 2, yoyo: true, repeat: -1, ease: "sine.inOut" });
+
+      // Ring spin
+      gsap.to(ringRef.current, { rotation: 360, duration: 20, repeat: -1, ease: "none", transformOrigin: "50% 50%" });
+
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section style={{ padding:'100px 0', position:'relative', overflow:'hidden' }}>
+    <section ref={sectionRef} className="section" style={{ background: "#ffffff", paddingTop: 80, paddingBottom: 80 }}>
       <style>{`
-        @keyframes shimmer { from { background-position: -200% center; } to { background-position: 200% center; } }
-        .cta-box {
-          background: linear-gradient(135deg, rgba(124,58,237,0.15) 0%, rgba(76,29,149,0.1) 100%);
-          border: 1px solid rgba(124,58,237,0.25);
-          border-radius: 24px;
-          padding: 72px 56px;
-          text-align: center;
-          position: relative;
-          overflow: hidden;
+        @keyframes shimmer-text {
+          0%   { background-position: -200% center; }
+          100% { background-position: 200% center; }
         }
-        .cta-box::before {
-          content: '';
-          position: absolute; inset: 0;
-          background: radial-gradient(ellipse at 50% 0%, rgba(168,85,247,0.12), transparent 70%);
-          pointer-events: none;
-        }
-        .cta-main-btn {
+        .cta-btn-main {
           display: inline-flex; align-items: center; gap: 10px;
-          background: linear-gradient(135deg, #7c3aed, #a855f7);
-          color: white; padding: 16px 36px;
-          border-radius: 12px; border: none;
-          font-family: 'Syne',sans-serif; font-size: 16px; font-weight: 700;
+          background: #18103a; color: white;
+          padding: 16px 36px; border-radius: 12px; border: none;
+          font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800;
           cursor: pointer; transition: all 0.25s;
-          box-shadow: 0 8px 24px rgba(124,58,237,0.35);
+          box-shadow: 0 8px 28px rgba(24,16,58,0.28);
         }
-        .cta-main-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(124,58,237,0.5); }
-        .cta-sec-btn {
+        .cta-btn-main:hover { background: #7c3aed; transform: translateY(-3px); box-shadow: 0 14px 36px rgba(124,58,237,0.4); }
+        .cta-btn-sec {
           display: inline-flex; align-items: center; gap: 8px;
-          background: transparent; border: 1px solid rgba(124,58,237,0.3);
-          color: rgba(245,243,255,0.75); padding: 16px 32px;
-          border-radius: 12px; font-family: 'Syne',sans-serif; font-size: 15px; font-weight: 600;
+          background: white; color: #7c3aed;
+          padding: 16px 32px; border-radius: 12px;
+          border: 1.5px solid #c4b5fd;
+          font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700;
           cursor: pointer; transition: all 0.25s;
         }
-        .cta-sec-btn:hover { border-color: rgba(168,85,247,0.5); color: #e9d5ff; transform: translateY(-3px); }
-        @media(max-width:600px) { .cta-box { padding: 48px 24px; } .cta-btns { flex-direction: column; align-items: center; } }
+        .cta-btn-sec:hover { background: #f3f0ff; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(124,58,237,0.14); }
       `}</style>
 
-      <div style={{ maxWidth:900, margin:'0 auto', padding:'0 24px' }}>
-        <div className="cta-box">
-          {/* Decorative dots */}
-          {['-top-2 -left-2','-top-2 -right-2','-bottom-2 -left-2','-bottom-2 -right-2'].map((pos,i) => (
-            <div key={i} style={{
-              position:'absolute', width:8, height:8, borderRadius:'50%',
-              background:'rgba(168,85,247,0.4)',
-              top: i < 2 ? -4 : 'auto', bottom: i >= 2 ? -4 : 'auto',
-              left: i%2===0 ? -4 : 'auto', right: i%2===1 ? -4 : 'auto',
-            }} />
-          ))}
+      <div className="container">
+        <div ref={boxRef} style={{
+          position: "relative", overflow: "hidden",
+          background: "linear-gradient(145deg, #f5f3ff 0%, #ede9fe 50%, #f3f0ff 100%)",
+          border: "1px solid #c4b5fd",
+          borderRadius: 28,
+          padding: "100px 60px",
+          textAlign: "center",
+          boxShadow: "0 24px 64px rgba(124,58,237,0.12)",
+          opacity: 1,
+        }}>
+          {/* Dot grid overlay */}
+          <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(124,58,237,0.1) 1px, transparent 1px)", backgroundSize: "28px 28px", pointerEvents: "none" }} />
 
-          <p style={{ fontFamily:'DM Sans,sans-serif', fontSize:11, letterSpacing:'3px', textTransform:'uppercase', color:'#a855f7', marginBottom:16 }}>
-            Let's Work Together
-          </p>
+          {/* Glow orb */}
+          <div ref={orbRef} style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 400, height: 400, background: "radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(20px)", pointerEvents: "none" }} />
 
-          <h2 style={{ fontFamily:'Syne,sans-serif', fontSize:'clamp(28px,5vw,52px)', fontWeight:800, lineHeight:1.1, marginBottom:20, letterSpacing:'-1px' }}>
-            Have a project in mind?<br />
-            <span style={{
-              background: 'linear-gradient(90deg, #a855f7, #7c3aed, #c084fc, #a855f7)',
-              backgroundSize: '200% auto',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              animation: 'shimmer 3s linear infinite',
-            }}>Let's build it together.</span>
-          </h2>
+          {/* Spinning ring */}
+          <div ref={ringRef} style={{ position: "absolute", top: "50%", left: "50%", width: 480, height: 480, marginTop: -240, marginLeft: -240, border: "1px dashed rgba(124,58,237,0.15)", borderRadius: "50%", pointerEvents: "none" }} />
 
-          <p style={{ fontFamily:'DM Sans,sans-serif', color:'rgba(196,181,253,0.6)', fontSize:16, maxWidth:520, margin:'0 auto 40px', lineHeight:1.75 }}>
-            Whether you're a startup, an established company, or looking to hire — I'm ready to bring your vision to life with clean design and sharp code.
-          </p>
+          {/* Content */}
+          <div style={{ position: "relative", zIndex: 2, maxWidth: 640, margin: "0 auto" }}>
+            <span className="label" style={{ display: "block", textAlign: "center", marginBottom: 16 }}>Let's Work Together</span>
 
-          <div className="cta-btns" style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-            <button className="cta-main-btn" onClick={() => document.getElementById('contact').scrollIntoView({behavior:'smooth'})}>
-              Start a Conversation →
-            </button>
-            <button className="cta-sec-btn" onClick={() => document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})}>
-              See My Work
-            </button>
-          </div>
+            <div ref={headRef} style={{ opacity: 1, marginBottom: 20 }}>
+              <h2 style={{
+                fontFamily: "'Syne',sans-serif",
+                fontSize: "clamp(30px,5vw,56px)",
+                fontWeight: 800, lineHeight: 1.08,
+                letterSpacing: "-2px", color: "#18103a",
+                marginBottom: 10,
+              }}>
+                Have a project<br />in mind?
+              </h2>
+              <p style={{
+                fontFamily: "'Syne',sans-serif",
+                fontSize: "clamp(22px,3.5vw,38px)",
+                fontWeight: 700, lineHeight: 1.1,
+                background: "linear-gradient(90deg, #7c3aed, #a855f7, #7c3aed)",
+                backgroundSize: "200% auto",
+                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                animation: "shimmer-text 3s linear infinite",
+                letterSpacing: "-1px",
+              }}>
+                Let's build it together.
+              </p>
+            </div>
 
-          {/* Social proof */}
-          <div style={{ marginTop:48, display:'flex', justifyContent:'center', gap:32, flexWrap:'wrap' }}>
-            {['Open to Internships', 'Available for Freelance', 'Open to Full-time'].map(badge => (
-              <div key={badge} style={{ display:'flex', alignItems:'center', gap:6 }}>
-                <span style={{ width:6, height:6, borderRadius:'50%', background:'#a855f7', display:'inline-block' }} />
-                <span style={{ fontFamily:'DM Sans,sans-serif', fontSize:13, color:'rgba(196,181,253,0.5)' }}>{badge}</span>
-              </div>
-            ))}
+            <p ref={subRef} style={{ opacity: 0, fontSize: 16, color: "#7c6fa0", lineHeight: 1.8, marginBottom: 40, fontFamily: "'DM Sans',sans-serif" }}>
+              Whether you're a startup needing a website, a brand needing a design system, or a company looking for a sharp frontend intern — I'm ready.
+            </p>
+
+            <div ref={btnsRef} style={{ opacity: 0, display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginBottom: 40 }}>
+              <button className="cta-btn-main" onClick={() => document.getElementById("contact").scrollIntoView({ behavior: "smooth" })}>
+                Start a Conversation →
+              </button>
+              <button className="cta-btn-sec" onClick={() => document.getElementById("portfolio").scrollIntoView({ behavior: "smooth" })}>
+                See My Work
+              </button>
+            </div>
+
+            {/* Availability badges */}
+            <div ref={badgesRef} style={{ opacity: 0, display: "flex", justifyContent: "center", gap: 10, flexWrap: "wrap" }}>
+              {["✅ Open to Internships", "✅ Freelance Available", "✅ Full-time Ready"].map(b => (
+                <div key={b} style={{
+                  display: "inline-flex", alignItems: "center", gap: 6,
+                  background: "white", border: "1px solid #e5e0fa",
+                  borderRadius: 100, padding: "6px 14px",
+                  fontSize: 13, color: "#3d2e6b",
+                  fontFamily: "'DM Sans',sans-serif", fontWeight: 500,
+                  boxShadow: "0 2px 8px rgba(124,58,237,0.08)",
+                }}>
+                  {b}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
