@@ -114,7 +114,7 @@ export default function Experience() {
         </div>
 
         {/* Timeline */}
-        <div style={{ maxWidth: 860, margin: "0 auto", position: "relative" }}>
+        <div className="desktop-exp" style={{ maxWidth: 860, margin: "0 auto", position: "relative" }}>
 
           {/* Animated SVG pathway */}
           <div style={{ position: "absolute", left: "50%", top: 0, bottom: 0, transform: "translateX(-50%)", width: 60, pointerEvents: "none", display: "flex", justifyContent: "center" }} className="desktop-path">
@@ -127,9 +127,9 @@ export default function Experience() {
           {expData.map((exp, i) => {
             const isLeft = i % 2 === 0;
             return (
-              <div key={exp.id} style={{ display: "grid", gridTemplateColumns: "1fr 60px 1fr", gap: "0 0", marginBottom: 40, alignItems: "start" }}>
+              <div key={exp.id} className="exp-grid" style={{ gap: "0 0", marginBottom: 40, alignItems: "start" }}>
                 {/* Left card or period */}
-                <div style={{ paddingRight: 28, paddingTop: 8 }}>
+                <div className="exp-left-col" style={{ paddingRight: 28, paddingTop: 8 }}>
                   {isLeft ? (
                     <ExpCard exp={exp} side="left" index={i} />
                   ) : (
@@ -150,7 +150,7 @@ export default function Experience() {
                 </div>
 
                 {/* Right card or period */}
-                <div style={{ paddingLeft: 28, paddingTop: 8 }}>
+                <div className="exp-right-col" style={{ paddingLeft: 28, paddingTop: 8 }}>
                   {!isLeft ? (
                     <ExpCard exp={exp} side="right" index={i} />
                   ) : (
@@ -169,7 +169,7 @@ export default function Experience() {
           @media(min-width:641px) { .mobile-exp { display: none !important; } }
           @media(max-width:640px) { .desktop-exp { display: none !important; } }
         `}</style>
-        <div className="mobile-exp" style={{ display: "none" }}>
+        <div className="mobile-exp">
           {expData.map((exp, i) => (
             <div key={exp.id} style={{ display: "flex", gap: 14, marginBottom: 20 }}>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 12 }}>

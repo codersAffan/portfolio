@@ -44,7 +44,7 @@ export default function CTA() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section" style={{ background: "#ffffff", paddingTop: 80, paddingBottom: 80 }}>
+    <section ref={sectionRef} className="section" style={{ background: "#ffffff", paddingTop: 40, paddingBottom: 20 }}>
       <style>{`
         @keyframes shimmer-text {
           0%   { background-position: -200% center; }
@@ -97,7 +97,7 @@ export default function CTA() {
             <div ref={headRef} style={{ opacity: 1, marginBottom: 20 }}>
               <h2 style={{
                 fontFamily: "'Syne',sans-serif",
-                fontSize: "clamp(30px,5vw,56px)",
+                fontSize: "clamp(40px,5vw,56px)",
                 fontWeight: 800, lineHeight: 1.08,
                 letterSpacing: "-2px", color: "#18103a",
                 marginBottom: 10,
@@ -130,22 +130,6 @@ export default function CTA() {
               <button className="cta-btn-sec" onClick={() => document.getElementById("portfolio").scrollIntoView({ behavior: "smooth" })}>
                 See My Work
               </button>
-            </div>
-
-            {/* Availability badges */}
-            <div ref={badgesRef} style={{ opacity: 0, display: "flex", justifyContent: "center", gap: 10, flexWrap: "wrap" }}>
-              {["✅ Open to Internships", "✅ Freelance Available", "✅ Full-time Ready"].map(b => (
-                <div key={b} style={{
-                  display: "inline-flex", alignItems: "center", gap: 6,
-                  background: "white", border: "1px solid #e5e0fa",
-                  borderRadius: 100, padding: "6px 14px",
-                  fontSize: 13, color: "#3d2e6b",
-                  fontFamily: "'DM Sans',sans-serif", fontWeight: 500,
-                  boxShadow: "0 2px 8px rgba(124,58,237,0.08)",
-                }}>
-                  {b}
-                </div>
-              ))}
             </div>
           </div>
         </div>

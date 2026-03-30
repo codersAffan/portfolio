@@ -121,26 +121,20 @@ export default function Hero({ visitorData }) {
         </div>
 
         {/* Stats */}
-        <div ref={statsRef} style={{ opacity: 0, display: "flex", gap: 0, flexWrap: "wrap", paddingTop: 32, borderTop: "1px solid rgba(124,58,237,0.12)" }}>
+        <div ref={statsRef} style={{ opacity: 0, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 24, paddingTop: 32, paddingBottom: 32, borderTop: "1px solid rgba(124,58,237,0.12)" }}>
           {[
             { num: "10+", label: "Projects Built" },
             { num: "3",   label: "Skill Domains" },
             { num: "2+",  label: "Years Experience" },
             { num: "∞",   label: "Drive to Build" },
           ].map((s, i) => (
-            <div key={s.label} style={{ flex: "1 1 120px", paddingRight: 32, paddingLeft: i === 0 ? 0 : 32, borderRight: i < 3 ? "1px solid rgba(124,58,237,0.1)" : "none" }}>
+            <div key={s.label} style={{ textAlign: "center" }}>
               <div style={{ fontFamily: "'Syne', sans-serif", fontSize: "clamp(26px,3vw,36px)", fontWeight: 800, color: "#18103a" }}>{s.num}</div>
               <div style={{ fontSize: 13, color: "#7c6fa0", marginTop: 4, fontFamily: "'DM Sans', sans-serif" }}>{s.label}</div>
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: 6, opacity: 0.4, animation: "float 2.5s ease-in-out infinite" }}>
-        <div style={{ width: 1, height: 36, background: "linear-gradient(to bottom, transparent, #7c3aed)" }} />
-        <span style={{ fontSize: 9, letterSpacing: "2.5px", color: "#7c3aed", textTransform: "uppercase", fontFamily: "'DM Sans', sans-serif" }}>Scroll</span>
-      </div>
+      </div>    
     </section>
   );
 }

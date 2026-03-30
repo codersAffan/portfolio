@@ -53,22 +53,29 @@ export default function Services() {
     <section id="services" ref={sectionRef} className="section" style={{ background: "#f5f3ff" }}>
       <style>{`
         .srv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 20px; margin-bottom: 80px; }
+        @media(max-width:640px) { .srv-grid { grid-template-columns: 1fr; gap: 16px; margin-bottom: 60px; } }
         .srv-card { background: white; border: 1px solid #e5e0fa; border-radius: 16px; padding: 28px 24px; transition: all 0.28s; position: relative; overflow: hidden; }
         .srv-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #7c3aed, #a855f7); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
         .srv-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(124,58,237,0.12); border-color: #c4b5fd; }
         .srv-card:hover::before { transform: scaleX(1); }
         .process-steps { display: flex; gap: 0; align-items: flex-start; position: relative; }
-        @media(max-width:640px) { .process-steps { flex-direction: column; gap: 24px; } .proc-line-wrap { display: none !important; } }
+        @media(max-width:640px) { 
+          .process-steps { flex-direction: column; gap: 24px; } 
+          .proc-line-wrap { display: none !important; } 
+          .step-text p { max-width: none !important; }
+          .process-container { padding: 32px 24px !important; }
+          .step-circle { margin-bottom: 12px !important; }
+        }
       `}</style>
 
       <div className="container">
         {/* Header */}
         <div ref={headerRef} style={{ opacity: 0, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 20, marginBottom: 52 }}>
-          <div>
+          <div style={{ flex: 1, minWidth: 280 }}>
             <span className="label">What I Do</span>
             <h2 className="section-title" style={{ marginBottom: 0 }}>Services<br /><span>I Offer</span></h2>
           </div>
-          <p style={{ maxWidth: 340, color: "#7c6fa0", fontSize: 15, lineHeight: 1.75 }}>
+          <p style={{ maxWidth: 340, color: "#7c6fa0", fontSize: 15, lineHeight: 1.75, flex: 1, minWidth: 280 }}>
             Need a stunning UI, a sharp brand, or a conversion-ready website? I've got it covered.
           </p>
         </div>
@@ -99,7 +106,7 @@ export default function Services() {
             <h3 style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(24px,3vw,38px)", fontWeight: 800, color: "#18103a" }}>My <span style={{ color: "#7c3aed" }}>Process</span></h3>
           </div>
 
-          <div style={{ background: "white", border: "1px solid #e5e0fa", borderRadius: 20, padding: "48px 40px", position: "relative", overflow: "hidden" }}>
+          <div className="process-container" style={{ background: "white", border: "1px solid #e5e0fa", borderRadius: 20, padding: "48px 40px", position: "relative", overflow: "hidden" }}>
             {/* Connecting line */}
             <div className="proc-line-wrap" style={{ position: "absolute", top: "calc(48px + 26px)", left: "calc(40px + 26px)", right: "calc(40px + 26px)", height: 2, background: "#f3f0ff", zIndex: 0 }}>
               <div ref={lineRef} style={{ height: "100%", background: "linear-gradient(90deg, #7c3aed, #a855f7)", borderRadius: 2 }} />

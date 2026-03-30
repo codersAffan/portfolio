@@ -20,10 +20,6 @@ export default function Footer() {
             <p style={{ fontSize: 13, color: "#7c6fa0", lineHeight: 1.7 }}>
               Frontend Developer · UI/UX Designer · Graphic Designer. Building things people actually use.
             </p>
-            <div style={{ marginTop: 16, display: "inline-flex", alignItems: "center", gap: 7, background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: 100, padding: "6px 14px" }}>
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px #22c55e", display: "inline-block" }} />
-              <span style={{ fontSize: 12, color: "#166534", fontFamily: "'DM Sans',sans-serif", fontWeight: 500 }}>Available for work</span>
-            </div>
           </div>
 
           {/* Nav links */}
